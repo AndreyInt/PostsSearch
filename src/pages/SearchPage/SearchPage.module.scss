@@ -1,0 +1,32 @@
+.cardPostContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 0 auto;
+}
+
+.cardsColumn {
+  column-count: 2;
+  column-rule-style: none;
+  column-gap: 24px;
+}
+
+.searchPage {
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 240px) and (max-width: 780px) {
+  .cardsColumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cardPostContainer {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

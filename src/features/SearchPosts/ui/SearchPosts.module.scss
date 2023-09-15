@@ -1,0 +1,12 @@
+.search {
+  width: 100%;
+  margin: 32px auto 0;
+  max-width: 1140px;
+  min-width: 340px;
+  position: relative;
+}
+
+.btn {
+  left: 14px;
+  top: calc(50% - var(--search-icon-size) / 2);
+}

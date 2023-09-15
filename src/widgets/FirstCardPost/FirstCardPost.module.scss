@@ -1,0 +1,148 @@
+.firstCardPost {
+  width: 1140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin: 32px auto 0;
+  padding-bottom: 32px;
+  border-radius: 12px;
+  border: 1px solid #F4F4F4;
+  overflow: hidden;
+}
+
+.img {
+  width: 1140px;
+  height: 600px;
+}
+
+.title {
+  max-width: 970px;
+  font-size: var(--font-size-postTitle);
+  line-height: var(--font-line-postTitle);
+  font-weight: var(--font-weight-postTitle);
+}
+
+.containerLike {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.containerContent {
+  display: flex;
+  width: 1108px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 32px;
+}
+
+.titleLikeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: var(--font-size-p);
+  line-height: var(--font-line-p);
+  font-weight: var(--font-weight-p);
+}
+
+.containerButton {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.link {
+  color: inherit;
+}
+
+
+@media screen and (max-width: 1399px) {
+  .firstCardPost {
+    width: 950px;
+  }
+
+  .containerContent {
+    width: 918px;
+    gap: 24px;
+  }
+
+  .img {
+    width: 950px;
+    height: 500px;
+  }
+}
+
+@media screen and (min-width: 780px) and (max-width: 1140px) {
+  .firstCardPost {
+    padding-bottom: 24px;
+    gap: 18px;
+  }
+
+  .title {
+    font-size: calc(var(--font-size-postTitle) - 4px);
+    line-height: calc(var(--font-line-postTitle) - 4px);
+    max-width: 590px;
+  }
+
+  .firstCardPost {
+    width: 950px;
+  }
+
+  .containerContent {
+    width: 700px;
+    gap: 12px;
+  }
+
+  .text {
+    font-size: calc(var(--font-size-p) - 3px);
+    line-height: calc(var(--font-line-p) - 3px);
+  }
+
+  .img {
+    width: 715px;
+    height: 376px;
+  }
+}
+
+@media screen and (min-width: 340px) and (max-width: 780px) {
+  .firstCardPost {
+    padding-bottom: 18px;
+    gap: 12px;
+    width: 330px;
+  }
+
+  .title {
+    font-size: calc(var(--font-size-postTitle) - 8px);
+    line-height: calc(var(--font-line-postTitle) - 8px);
+  }
+
+  .containerContent {
+    width: 330px;
+    gap: 8px;
+  }
+
+  .titleLikeContainer {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .text {
+    font-size: calc(var(--font-size-p) - 6px);
+    line-height: calc(var(--font-line-p) - 6px);
+  }
+
+  .img {
+    width: 330px;
+    height: 172px;
+  }
+}

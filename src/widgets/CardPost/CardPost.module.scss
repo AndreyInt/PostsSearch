@@ -1,0 +1,125 @@
+.cardPost {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 24px auto;
+  gap: 24px;
+  justify-content: flex-start;
+  width: 558px;
+  flex-wrap: nowrap;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #F4F4F4;
+}
+
+.cardPost:last-child,
+.cardPost:nth-last-child(2) {
+  margin-bottom: 0;
+}
+
+.img {
+  width: 100%;
+  height: 273px;
+}
+
+.containerInfo {
+  width: 526px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 24px;
+  padding-bottom: 32px;
+}
+
+.title {
+  font-size: var(--font-size-postTitle);
+  line-height: var(--font-line-postTitle);
+  font-weight: var(--font-weight-postTitle);
+}
+
+.containerLike {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.containerButton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  color: inherit;
+}
+
+@media screen and (min-width: 780px) and (max-width: 1140px) {
+  .cardPost {
+    width: 354px;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+
+  .containerInfo {
+    gap: 18px;
+    padding-bottom: 22px;
+    width: 90%
+  }
+
+  .containerLike {
+    gap: 18px;
+  }
+
+  .title {
+    font-size: calc(var(--font-size-postTitle) - 4px);
+    line-height: calc(var(--font-line-postTitle) - 4px);
+  }
+
+  .text {
+    font-size: calc(var(--font-size-p) - 3px);
+    line-height: calc(var(--font-line-p) - 3px);
+  }
+
+  .img {
+    width: 330px;
+    height: 188px;
+  }
+}
+
+@media screen and (min-width: 340px) and (max-width: 780px) {
+  .cardPost {
+    width: 330px;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+
+  .containerInfo {
+    gap: 12px;
+    padding-bottom: 16px;
+    width: 100%
+  }
+
+  .containerLike {
+    gap: 12px;
+  }
+
+  .title {
+    font-size: calc(var(--font-size-postTitle) - 6px);
+    line-height: calc(var(--font-line-postTitle) - 6px);
+  }
+
+  .text {
+    font-size: calc(var(--font-size-p) - 5px);
+    line-height: calc(var(--font-line-p) - 5px);
+  }
+
+  .img {
+    width: 328px;
+    height: 188px;
+  }
+}

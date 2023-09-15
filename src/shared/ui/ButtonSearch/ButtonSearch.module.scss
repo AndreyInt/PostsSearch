@@ -1,0 +1,10 @@
+.buttonSearch {
+  height: var(--search-icon-size);
+  width: var(--search-icon-size);
+  position: absolute;
+  transition: opacity ease-in 0.1s;
+}
+
+.buttonSearch:hover {
+  opacity: 0.9;
+}

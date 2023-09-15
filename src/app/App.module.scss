@@ -1,0 +1,23 @@
+@import "./styles/index";
+
+.app {
+  margin: 64px auto 0;
+  width: 81.43%;
+  max-width: 1140px;
+  min-width: 340px;
+  font-family: Roboto, sans-serif;
+}
+
+@media screen and (max-width: 1399px) {
+  .app {
+    width: 92%;
+    margin-top: 44px;
+  }
+}
+
+@media screen and (min-width: 340px) and (max-width: 780px) {
+  .app {
+    width: 100%;
+    margin-top: 20px;
+  }
+}

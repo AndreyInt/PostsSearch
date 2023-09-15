@@ -1,0 +1,30 @@
+.buttonDisLike {
+  width: var(--like-dislike-icon-size);
+  height: var(--like-dislike-icon-size);
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.disLikes {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--second-text-color);
+}
+
+@media screen and (max-width: 1140px) {
+  .buttonDisLike {
+    width: calc(var(--search-icon-size) - 4px);
+    height: calc(var(--search-icon-size) - 4px);
+  }
+  .disLikes {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
