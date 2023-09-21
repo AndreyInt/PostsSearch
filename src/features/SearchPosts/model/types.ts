@@ -1,8 +1,10 @@
 export interface PostsSchema {
     posts: PostSchema[],
-    status: 'loading' | 'resolved' | 'rejected',
+    statusFetchPosts: 'loading' | 'resolved' | 'rejected',
+    statusFetchPost: 'loading' | 'resolved' | 'rejected'
 }
 
+export type Reactions = 'like' | 'disLike' | null
 export interface PostSchema {
     userId: number,
     id: number,
@@ -10,12 +12,17 @@ export interface PostSchema {
     body: string,
     like?: number,
     disLike?: number,
-    isActiveDisLike?: boolean,
-    isActiveLike?: boolean,
+    reaction: Reactions,
 
 }
 
 export interface QueryData {
     search: string,
     startIndex?: number,
+    isPaginationFetch: boolean,
+}
+
+export interface ReactionReducerActions {
+    postId: number,
+    reaction: Reactions
 }
