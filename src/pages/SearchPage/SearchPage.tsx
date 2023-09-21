@@ -19,19 +19,18 @@ export const SearchPage = ({className}:SearchPageProps) => {
             <Header/>
             <SearchPosts/>
             <div className={cls.searchPage}>
-                {postsInfo.status === 'loading'
+                {postsInfo.statusFetchPosts === 'loading' && !postsInfo.posts?.length
                     ? <Loading/>
-                    : (postsInfo.status === 'resolved' && postsInfo.posts.length > 0)
+                    : (postsInfo.posts.length > 0)
                         ? <div className={cls.cardPostContainer}>
                             <FirstCardPost
                                 postId={postsInfo.posts[0]?.id}
-                                isActiveDisLike={postsInfo.posts[0]?.isActiveDisLike}
+                                reaction={postsInfo.posts[0]?.reaction}
                                 title={postsInfo.posts[0]?.title}
                                 img={firstPostPhoto}
                                 text={postsInfo.posts[0]?.body}
                                 likes={postsInfo.posts[0]?.like}
                                 disLikes={postsInfo.posts[0]?.disLike}
-                                isActiveLike={postsInfo.posts[0]?.isActiveLike}
                                     />
                             <div className={cls.cardsColumn}>
                                 {postsInfo.posts.map((post, index) => {
@@ -40,16 +39,15 @@ export const SearchPage = ({className}:SearchPageProps) => {
                                     return <CardPost
                                         key={post.id}
                                         postId={post.id}
-                                        isActiveDisLike={post.isActiveDisLike}
+                                        reaction={post.reaction}
                                         title={post.title}
                                         img={firstPostPhoto}
                                         likes={post.like}
-                                        disLikes={post.disLike}
-                                        isActiveLike={post.isActiveLike}/>
+                                        disLikes={post.disLike}/>
                             })}
                             </div>
                         </div>
-                        : postsInfo.status === null
+                        : postsInfo.statusFetchPosts === null
                             ? null
                             : <div>Посты не найдены</div>}
             </div>

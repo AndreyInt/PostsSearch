@@ -4,36 +4,41 @@ import {InputSearch} from "src/shared/ui/InputSearch/InputSearch";
 import React, {useEffect, useReducer, useState} from "react";
 import {useAppDispatch} from "src/shared/lib/redux/redux";
 import {QueryData} from "src/features/SearchPosts/model/types";
-import {fetchPaginationPosts, fetchPosts} from "src/features/SearchPosts/model/postsSlice";
+import {fetchPosts} from "src/features/SearchPosts/model/postsSlice";
 
 const initialState: QueryData = {
     search: '',
     startIndex: 0,
+    isPaginationFetch: false,
 }
 
 type Action =
     | {type: 'changeSearch', search: string}
-    | {type: 'changeStartIndex', startIndex: number};
+    | {type: 'changeStartIndex', startIndex: number}
+    | {type: 'changeIsPaginationFetch', isPaginationFetch: boolean}
 
 
-function reducerSearchBooks(state: QueryData, action: Action): QueryData  {
+function reducerSearchPosts(state: QueryData, action: Action): QueryData  {
     switch (action.type) {
         case 'changeSearch' :
             return {...state ,search: action.search}
         case 'changeStartIndex':
             return {...state ,startIndex: action.startIndex}
+        case 'changeIsPaginationFetch':
+            return {...state ,isPaginationFetch: action.isPaginationFetch}
         default:
             throw new Error();
     }
 }
 
 export const SearchPosts = () => {
-    const [searchIsFocus, setSearchIsFocus] = useState(false); //чтобы поиск по нажатию enter работал только при фокусе на Input
+
+    const [searchIsFocus, setSearchIsFocus] = useState(false);
     const appDispatch = useAppDispatch();
-    const [fetch, setFetch] = useState(false);
-    const [queryData, dispatch] = useReducer(reducerSearchBooks, initialState);
+    const [queryData, dispatch] = useReducer(reducerSearchPosts, initialState);
     const changeSearch = (e: React.ChangeEvent<HTMLInputElement>) => dispatch({type: 'changeSearch', search: e.target.value});
     const changeStartIndex = (startIndex: number) => dispatch({type: 'changeStartIndex', startIndex: startIndex + 21});
+    const changeIsPaginationFetch = (isPaginationFetch: boolean) => dispatch({type: 'changeIsPaginationFetch', isPaginationFetch: isPaginationFetch});
     const fetchBooks = (e: KeyboardEvent) =>
     {
         if (e.key === 'Enter' && searchIsFocus) {
@@ -49,11 +54,13 @@ export const SearchPosts = () => {
     }, [queryData, searchIsFocus])
 
     useEffect(() => {
-        if (fetch) {
-            appDispatch(fetchPaginationPosts(queryData)).finally( () => setFetch(false));
-            changeStartIndex(queryData.startIndex);
+        if (queryData.isPaginationFetch) {
+            appDispatch(fetchPosts(queryData)).finally( () => {
+                changeIsPaginationFetch(false);
+                changeStartIndex(queryData.startIndex);
+            });
         }
-    }, [fetch])
+    }, [queryData.isPaginationFetch])
 
     useEffect( () => {
         document.addEventListener('scroll', scrollHandler)
@@ -64,7 +71,7 @@ export const SearchPosts = () => {
 
     const scrollHandler = (e: any) => {
         if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
-            setFetch(true)
+            changeIsPaginationFetch(true)
         }
     }
 
