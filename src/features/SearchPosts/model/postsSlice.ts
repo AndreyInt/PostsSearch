@@ -18,7 +18,8 @@ export const fetchPosts = createAsyncThunk( // Функция предназан
         else {
             response = await axios.get(`${__BASE_URL__}?q=${query.search}&_start=0&_limit=21`);
         }
-        return response.data
+        return {response: response.data,
+            isPaginationFetch: query.isPaginationFetch}
     }
 )
 
@@ -65,14 +66,17 @@ export const postsSlice = createSlice({
         builder.addCase(fetchPosts.pending, (state,action) => {
             state.statusFetchPosts = 'loading';
         })
+
         builder.addCase(fetchPosts.fulfilled, (state, action) => {
-            state.posts = [...state.posts, ...action.payload.map((post:PostSchema) => {
-                    post.like = Math.floor(Math.random() * 50);
-                    post.disLike = Math.floor(Math.random() * 50);
-                return post
-            })]
-            state.statusFetchPosts = 'resolved';
+        if (!action.payload.isPaginationFetch)
+            state.posts = [];
+        state.posts = [...state.posts, ...action.payload.response.map((post:PostSchema) => {
+            post.like = Math.floor(Math.random() * 50);
+            post.disLike = Math.floor(Math.random() * 50);
+            return post})]
+        state.statusFetchPosts = 'resolved';
         })
+
         builder.addCase(fetchPosts.rejected, (state, action) => {
             state.statusFetchPosts = 'rejected';
         })
@@ -80,12 +84,14 @@ export const postsSlice = createSlice({
         builder.addCase(fetchPost.pending, (state,action) => {
             state.statusFetchPost = 'loading';
         })
+
         builder.addCase(fetchPost.fulfilled, (state, action) => {
             action.payload.like = Math.floor(Math.random() * 50);
             action.payload.disLike = Math.floor(Math.random() * 50);
             state.posts = [action.payload];
             state.statusFetchPost = 'resolved';
         })
+
         builder.addCase(fetchPost.rejected, (state, action) => {
             state.statusFetchPost = 'rejected';
         })
